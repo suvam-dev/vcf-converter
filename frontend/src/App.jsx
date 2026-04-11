@@ -1,20 +1,35 @@
-
+import { useState, useRef } from 'react';
 import './App.css'
-import { Upload, Lock, Zap } from 'lucide-react';
+import { Upload, Lock, Zap, FileJson, CheckCircle2 } from 'lucide-react';
 function App() {
+  const [file, setFile] = useState(null);
+  const fileInputRef = useRef(null);
+
+  const handleFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+    if (selectedFile) {
+      setFile(selectedFile);
+      console.log("Selected file:", selectedFile.name);
+    }
+  };
+
+  const triggerFileInput = () => {
+    fileInputRef.current.click();
+  };
+
 
   return (
     <div>
-      <nav className="relativeflex justify-between  align-middle h-12 ">
-        <div className="flex  fixed  h-15 from-gray-200 border-b border-gray-300 to-gray-100 bg-gradient-to-b shadow-md shadow-gray-300/70 px-4 py-5 flex-row justify-between items-center w-full">
-          <div className=" text-violet-600 font-bold flex flex-row gap-2">
-            <div>Logo</div>
-            <div>VCF Converter</div>
+      <nav className="sticky top-0 z-50 bg-white shadow-md">
+        <div className="flex from-gray-200 border-b border-gray-300 to-gray-100 bg-gradient-to-b px-4 py-5 flex-row justify-between items-center w-full">
+          <div className="text-violet-600 font-bold flex flex-row gap-2 items-center">
+            <div className="bg-violet-600 text-white p-1 rounded-md">Logo</div>
+            <div className="text-xl">VCF Converter</div>
           </div>
           <div className="text-gray-700/80 font-bold flex flex-row gap-4">
-            <div className="hover:underline underline-offset-4 hover:text-blue-700 transition-all transition-duration-300 ease-linear hover:shadow-[0_5px_10px_rgba(0,0,0,0.2)] hover:shadow-blue-300 p-2 rounded-sm cursor-pointer hover:bg-indigo-300/40">Home</div>
-            <div className="hover:underline underline-offset-4 hover:text-blue-700 transition-all transition-duration-500 ease-linear hover:shadow-[0_5px_10px_rgba(0,0,0,0.2)] hover:shadow-blue-300 p-2 rounded-sm cursor-pointer hover:bg-indigo-300/40">About Us</div>
-            <div className="hover:underline underline-offset-4 hover:text-blue-700 transition-all transition-duration-700 ease-linear hover:shadow-[0_5px_10px_rgba(0,0,0,0.2)] hover:shadow-blue-300 p-2 rounded-sm cursor-pointer hover:bg-indigo-300/40">Contact Us</div>
+            <div className="hover:underline underline-offset-4 hover:text-blue-700 transition-all p-2 rounded-sm cursor-pointer hover:bg-indigo-300/40">Home</div>
+            <div className="hover:underline underline-offset-4 hover:text-blue-700 transition-all p-2 rounded-sm cursor-pointer hover:bg-indigo-300/40">About Us</div>
+            <div className="hover:underline underline-offset-4 hover:text-blue-700 transition-all p-2 rounded-sm cursor-pointer hover:bg-indigo-300/40">Contact Us</div>
           </div>
         </div>
       </nav>
@@ -45,14 +60,32 @@ function App() {
             <div className="text-gray-100 max-md:text-[12px] max-sm:text-[10px] px-3 py-3 bg-violet-400/80 blend-overlay hover:bg-violet-500/80 rounded-md flex justify-center items-center mb-3"><Upload size={50} strokeWidth={2} /></div>
             <div className="font-bold text-gray-700 max-md:text-[16px] max-sm:text-[14px] mt-2 justify-center items-center  text-xl">Drag & Drop VCF,CSV or Excel Files</div>
             <div className="text-gray-500 max-md:text-[16px] max-sm:text-[14px] flex flex-row items-center text-xl">Limit 25MB per upload files <span className="bg-gray-400/70 rounded-full h-1 w-1 inline-block ml-1 mr-[3px]"></span> Supports .vcf .csv .xlsv .xls</div>
-            <div className="from-cyan-600 to-blue-600 bg-gradient-to-r rounded-full px-5 py-2 text-white font-bold shadow-md shadow-violet-300 mt-10">Upload Files</div>
+            <input
+              type="file"
+              ref={fileInputRef}
+              onChange={handleFileChange}
+              className="hidden"
+              accept=".vcf,.csv,.xls,.xlsx"
+            />
+            <button
+              onClick={triggerFileInput}
+              className={`${file ? "hover:from-red-500 hover:to-red-400" : "hover:from-cyan-500 hover:to-blue-500"} from-cyan-600 to-blue-600 bg-gradient-to-r rounded-full px-8 py-3 text-white font-bold shadow-lg shadow-blue-200 mt-8 hover:scale-105 transition-transform cursor-pointer flex items-center gap-2`}
+            >
+              {file ? 'Change File' : 'Upload Files'}
+            </button>
+            {file && (
+              <div className="mt-4 flex items-center gap-2 text-green-600 animate-in fade-in slide-in-from-top-2 duration-300">
+                <CheckCircle2 size={18} />
+                <span className="font-semibold">{file.name}</span>
+              </div>
+            )}
           </div>
         </div>
-      </section>
+      </section >
       <section>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-15 py-4 bg-gradient-to-b from-gray-100 to-gray-200">
           <div className=" text-gray-100 bg-gray-400/70 shadow-md shadow-gray-400  text-black p-4 px-5 rounded-[25px] flex flex-col justify-around md:h-60 mb-2 gap-4">
-            <div className="  border-3 border-white/20 text-gray-900 p-3 rounded-[15px] inline-block bg-white/10 w-12 h-12"><Zap className="text-gray-600]" size={20} strokeWidth={2.25} /></div>
+            <div className="  border-3 border-white/20 text-gray-900 p-3 rounded-[15px] inline-block bg-white/10 w-12 h-12"><Zap className="text-gray-600" size={20} strokeWidth={2.25} /></div>
             <div className="inline-block mb-4 text-gray-900">
               <b className="text-xl text-black ">Lightning Fast Processing</b><br />
               Our high-performance engine processes thou  sands of contact entries in milliseconds, ensuring your workflow remains uninterrupted.</div>
