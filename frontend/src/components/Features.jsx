@@ -13,8 +13,8 @@ export default function Features() {
         <div className="from-indigo-700/70 text-gray-100 to-violet-800/70 bg-gradient-to-r shadow-md shadow-purple-300/50 text-white p-4 px-5 rounded-[25px] flex flex-col justify-around md:h-60 gap-4">
           <div className="border-3 border-white/20 text-white p-3 rounded-[15px] inline-block bg-white/10 w-12 h-12"><Lock className="text-white" size={20} strokeWidth={2.25} /></div>
           <div className="inline-block mb-4">
-            <b className="text-xl text-gray-100">Privacy First</b><br />
-            Files are processed entirely in your browser. Your contact data never leaves your device and is never uploaded to any server.</div>
+            <b className="text-xl text-gray-100">Secure Processing</b><br />
+            Files are securely processed through our fast backend server without being stored permanently, ensuring your data is kept safe while processing.</div>
         </div>
       </div>
     </section>
