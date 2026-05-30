@@ -1,0 +1,14 @@
+[project]
+name = "vcf-converter-api"
+version = "0.1.0"
+description = "FastAPI backend for VCF Converter"
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "python-multipart",
+    "pandas",
+    "openpyxl",
+]
+
+[tool.uv]
+python-version = "3.12"
