@@ -12,9 +12,9 @@
     }
   ],
   "routes": [
-    { "src": "/api/(.*)", "dest": "backend/app/main.py" },
-    { "src": "/upload", "dest": "backend/app/main.py" },
-    { "src": "/convert", "dest": "backend/app/main.py" },
+    { "src": "/api/(.*)", "dest": "/backend/app/main" },
+    { "src": "/upload", "dest": "/backend/app/main" },
+    { "src": "/convert", "dest": "/backend/app/main" },
     { "src": "/(.*)", "dest": "frontend/dist/$1" }
   ]
 }
