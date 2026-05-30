@@ -19,16 +19,12 @@ app.add_middleware(
 def is_empty_value(val):
     return pd.isna(val) or str(val).strip() == "" or str(val).lower() in EMPTY_VALUE_PATTERNS
 
-@app.get("/health")
-def health_check():
-    return {"status": "ok"}
-
-@app.get("/", "/api")
+@app.get("/api/health")
+@app.get("/api")
 def read_root():
-    return {"Connected": "True"}
+    return {"status": "ok", "Connected": "True"}
 
-
-@app.post("/upload", "/api/upload")
+@app.post("/api/upload")
 async def upload(file: UploadFile = File(...)):
     try:
         df = readfile(file)
@@ -38,7 +34,7 @@ async def upload(file: UploadFile = File(...)):
         return JSONResponse(status_code=400, content={"message": str(e)})
 
 
-@app.post("/convert", "/api/convert")
+@app.post("/api/convert")
 async def convert(file: UploadFile = File(...), mappings: str = Form(...), prefixes: str = Form("{}"), postfixes: str = Form("{}")):
     try:
         df = readfile(file)
@@ -101,6 +97,3 @@ def readfile(file):
         return pd.read_csv(file.file)
     else:
         raise ValueError("Please upload a .vcf, .csv or .xlsx file.")
-
-# Export for Vercel
-__all__ = ["app"]

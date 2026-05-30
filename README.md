@@ -2,7 +2,7 @@
 
 Convert your contact spreadsheets to standard vCard format in seconds. Upload CSV or Excel files, map columns to contact properties, and download ready-to-import vCard files for Gmail, Outlook, Apple Contacts, and more.
 
-**Live Demo:** https://vcf-converter.vercel.app
+**Live Demo:** https://convert-to-vcf.vercel.app
 
 ## Features
 
