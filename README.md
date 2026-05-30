@@ -4,6 +4,22 @@ Convert your contact spreadsheets to standard vCard format in seconds. Upload CS
 
 **Live Demo:** https://convert-to-vcf.vercel.app
 
+![VCF Converter UI](./preview.png)
+
+## How It Works
+
+```
+📂 Upload CSV / XLSX / XLS
+        ↓
+🗂️  Map your columns  →  FN, EMAIL, TEL, ORG ...
+        ↓
+✏️  (Optional) Add prefix / postfix per field
+        ↓
+⬇️  Download clean .vcf file
+        ↓
+📱 Import into Gmail, Outlook, Apple Contacts, WhatsApp...
+```
+
 ## Features
 
 - **File Upload** — CSV, XLSX, and XLS format support
