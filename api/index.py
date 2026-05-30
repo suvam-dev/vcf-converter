@@ -19,6 +19,10 @@ app.add_middleware(
 def is_empty_value(val):
     return pd.isna(val) or str(val).strip() == "" or str(val).lower() in EMPTY_VALUE_PATTERNS
 
+@app.get("/health")
+def health_check():
+    return {"status": "ok"}
+
 @app.get("/", "/api")
 def read_root():
     return {"Connected": "True"}
