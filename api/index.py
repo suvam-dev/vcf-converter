@@ -101,3 +101,6 @@ def readfile(file):
         return pd.read_csv(file.file)
     else:
         raise ValueError("Please upload a .vcf, .csv or .xlsx file.")
+
+# Export for Vercel
+__all__ = ["app"]
