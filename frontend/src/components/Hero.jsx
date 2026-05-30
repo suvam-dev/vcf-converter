@@ -140,9 +140,9 @@ export default function Hero() {
           </button>
           {file && (
             <div className="mt-4 flex flex-col items-center gap-2">
-              <div className="flex items-center gap-2 text-green-600 animate-in fade-in slide-in-from-top-2 duration-300">
-                <CheckCircle2 size={18} />
-                <span className="font-semibold">{file.name}</span>
+              <div className="flex items-center gap-2 text-green-600 animate-in fade-in slide-in-from-top-2 duration-300 max-w-xs">
+                <CheckCircle2 size={18} className="flex-shrink-0" />
+                <span className="font-semibold truncate" title={file.name}>{file.name}</span>
               </div>
               {uploadStatus.message && (
                 <div className={`text-sm ${uploadStatus.error ? 'text-red-500' : 'text-blue-500'} italic mt-2 text-center`}>
@@ -152,9 +152,9 @@ export default function Hero() {
                     <div>
                       <p className="font-semibold">{uploadStatus.message}</p>
                       {uploadStatus.columns && uploadStatus.columns.length > 0 && (
-                        <div className="mt-2 flex flex-wrap gap-2 justify-center max-w-sm">
+                        <div className="mt-2 flex flex-wrap gap-2 justify-center w-full overflow-hidden">
                           {uploadStatus.columns.map(c => (
-                            <span key={c} className="bg-blue-100 text-blue-700 text-xs font-semibold px-2 py-0.5 rounded-full">{c}</span>
+                            <span key={c} className="bg-blue-100 text-blue-700 text-xs font-semibold px-2 py-0.5 rounded-full max-w-[150px] truncate" title={c}>{c}</span>
                           ))}
                         </div>
                       )}
