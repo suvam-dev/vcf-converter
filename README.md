@@ -23,6 +23,9 @@ Convert your contact spreadsheets to standard vCard format in seconds. Upload CS
 
 ```
 vcf-converter/
+├── api/                         # Vercel serverless Python backend
+│   ├── index.py                 # FastAPI application (all endpoints)
+│   └── requirements.txt
 ├── frontend/                    # React + Vite SPA
 │   ├── src/
 │   │   ├── components/          # UI components
@@ -36,10 +39,6 @@ vcf-converter/
 │   │   └── index.css
 │   ├── vite.config.js
 │   └── package.json
-├── backend/
-│   └── app/
-│       ├── main.py              # FastAPI application
-│       └── requirements.txt
 ├── vercel.json                  # Deployment configuration
 └── README.md
 ```
@@ -82,17 +81,17 @@ Map your spreadsheet columns to any of these vCard properties:
 
 **1. Clone the repository**
 ```bash
-git clone https://github.com/yourusername/vcf-converter.git
+git clone https://github.com/suvam-dev/vcf-converter.git
 cd vcf-converter
 ```
 
 **2. Backend Setup**
 ```bash
-cd backend
+cd api
 python3 -m venv .venv
 source .venv/bin/activate           # Windows: .venv\Scripts\activate
-pip install -r app/requirements.txt
-uvicorn app.main:app --reload       # Runs on http://localhost:8000
+pip install -r requirements.txt
+uvicorn index:app --reload          # Runs on http://localhost:8000
 ```
 
 **3. Frontend Setup** (in a new terminal)
@@ -102,11 +101,10 @@ npm install
 npm run dev                         # Runs on http://localhost:5173
 ```
 
-The frontend automatically proxies API calls to the backend. Visit `http://localhost:5173` to test.
+The frontend automatically proxies API calls to the backend in dev mode. Visit `http://localhost:5173` to test.
 
 ### Build for Production
 
-**Frontend:**
 ```bash
 cd frontend
 npm run build                       # Creates dist/ folder
@@ -115,25 +113,22 @@ npm run preview                     # Preview production build
 
 ## Deploy to Vercel
 
-This project is configured for Vercel deployment with a monorepo setup.
+This project is configured for Vercel deployment. The `api/` folder is automatically detected as serverless Python functions.
 
 ### Option 1: Deploy via Vercel Dashboard
 1. Connect your GitHub repository to Vercel
-2. Vercel automatically detects the monorepo configuration from `vercel.json`
-3. Push to main branch — automatic deployment begins
+2. Vercel auto-detects the config from `vercel.json`
+3. Push to master — automatic deployment begins
 
 ### Option 2: Deploy via Vercel CLI
 ```bash
-npm install -g vercel              # Install Vercel CLI globally
-vercel login                        # Authenticate with Vercel
-vercel deploy                       # Deploy the entire project
+npx vercel --prod
 ```
 
 **Deployment Details:**
-- Frontend builds to `dist/` folder and serves as static site
-- Backend runs as serverless functions at `/api/*` routes
-- Both `/upload` and `/api/upload` endpoints are supported
-- Environment: https://vcf-converter.vercel.app
+- Frontend builds from `frontend/` and is served as a static site
+- Backend runs as a serverless function at `/api/*` routes
+- Python dependencies are installed from `api/requirements.txt`
 
 ## Troubleshooting
 
@@ -144,14 +139,10 @@ Ensure your file is CSV, XLSX, or XLS format and not corrupted.
 Make sure your spreadsheet has headers in the first row and contains data.
 
 **vCard won't import**  
-Try importing the downloaded file into a different contacts app to verify compatibility. Check that all columns are properly mapped.
+Try importing into a different contacts app. Check that all columns are properly mapped.
 
 **Other issues**  
-Clear your browser cache and try again. If problems persist, refresh the page.
-
-## Support
-
-For issues, questions, or feature requests, please open an issue on GitHub.
+Clear your browser cache and try again.
 
 ## License
 
