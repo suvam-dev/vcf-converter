@@ -1,8 +1,20 @@
 {
   "version": 2,
-  "buildCommand": "cd frontend && npm install && npm run build",
-  "outputDirectory": "frontend/dist",
-  "env": {
-    "PYTHONUNBUFFERED": "1"
-  }
+  "builds": [
+    {
+      "src": "frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "dist" }
+    },
+    {
+      "src": "backend/app/main.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    { "src": "/api/(.*)", "dest": "backend/app/main.py" },
+    { "src": "/upload", "dest": "backend/app/main.py" },
+    { "src": "/convert", "dest": "backend/app/main.py" },
+    { "src": "/(.*)", "dest": "frontend/dist/$1" }
+  ]
 }
