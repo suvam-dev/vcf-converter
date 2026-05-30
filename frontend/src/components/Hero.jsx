@@ -2,6 +2,19 @@ import { useState, useRef } from 'react';
 import { Upload, CheckCircle2, X, Pencil, ChevronDown } from 'lucide-react';
 import toast from 'react-hot-toast';
 
+const API_URL = import.meta.env.VITE_API_URL ?? (import.meta.env.DEV ? "http://localhost:8000" : "/api");
+
+const downloadVcf = (blob, fileName) => {
+  const url = window.URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = fileName;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  window.URL.revokeObjectURL(url);
+};
+
 export default function Hero() {
   const [file, setFile] = useState(null);
   const [uploadStatus, setUploadStatus] = useState({ loading: false, message: '', columns: [], error: false });
@@ -27,7 +40,7 @@ export default function Hero() {
     formData.append("postfixes", JSON.stringify(postfixes));
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/convert`, {
+      const response = await fetch(`${API_URL}/convert`, {
         method: "POST",
         body: formData,
       });
@@ -37,14 +50,9 @@ export default function Hero() {
       }
 
       const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = file.name.split('.')[0] + "_converted.vcf";
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-
+      const fileName = `${file.name.split('.')[0]}_converted.vcf`;
+      downloadVcf(blob, fileName);
+      toast.success("VCF file generated successfully!");
     } catch (error) {
       console.error(error);
       toast.error("Error generating the vCard file.");
@@ -59,10 +67,15 @@ export default function Hero() {
     formData.append("file", selectedFile);
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/upload`, {
+      const response = await fetch(`${API_URL}/upload`, {
         method: "POST",
         body: formData,
       });
+
+      if (!response.ok) {
+        throw new Error("Failed to upload file");
+      }
+
       const data = await response.json();
       console.log(data.columns);
       setUploadStatus({ loading: false, message: data.message, columns: data.columns || [], error: false });
@@ -110,7 +123,7 @@ export default function Hero() {
         <div className="flex flex-col items-center">
           <div className="text-gray-100 max-md:text-[12px] max-sm:text-[10px] px-3 py-3 bg-violet-400/80 blend-overlay hover:bg-violet-500/80 rounded-md flex justify-center items-center mb-3"><Upload size={50} strokeWidth={2} /></div>
           <div className="font-bold text-gray-700 max-md:text-[16px] max-sm:text-[14px] mt-2 justify-center items-center text-xl">Drag & Drop CSV or Excel Files</div>
-          <div className="text-gray-500 max-md:text-[16px] max-sm:text-[14px] flex flex-row items-center text-xl">Limit 25MB per upload files <span className="bg-gray-400/70 rounded-full h-1 w-1 inline-block ml-1 mr-[3px]"></span> Supports .csv .xlsx .xls</div>
+          <div className="text-gray-500 max-md:text-[16px] max-sm:text-[14px] flex flex-row items-center text-xl">Supports CSV, XLSX, XLS files <span className="bg-gray-400/70 rounded-full h-1 w-1 inline-block ml-1 mr-0.75"></span> Secure & private</div>
           <input
             type="file"
             ref={fileInputRef}
