@@ -1,26 +1,31 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "backend/app/main.py",
-      "use": "@vercel/python"
-    },
-    {
-      "src": "frontend/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
+  "buildCommand": "cd frontend && npm install && npm run build",
+  "outputDirectory": "frontend/dist",
+  "env": {
+    "PYTHONUNBUFFERED": "1"
+  },
+  "functions": {
+    "backend/app/main.py": {
+      "runtime": "@vercel/python@3.0"
     }
-  ],
+  },
   "routes": [
     {
       "src": "/api/(.*)",
       "dest": "backend/app/main.py"
     },
     {
+      "src": "/upload",
+      "dest": "backend/app/main.py"
+    },
+    {
+      "src": "/convert",
+      "dest": "backend/app/main.py"
+    },
+    {
       "src": "/(.*)",
-      "dest": "frontend/$1"
+      "dest": "frontend/dist/$1"
     }
   ]
 }
