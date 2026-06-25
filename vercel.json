@@ -1,8 +1,0 @@
-{
-  "buildCommand": "cd frontend && npm install && npm run build",
-  "installCommand": "cd frontend && npm install",
-  "framework": "nextjs",
-  "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/index" }
-  ]
-}
