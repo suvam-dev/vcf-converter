@@ -7,7 +7,7 @@ import { Toaster } from "@/components/ui/sonner";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://vcf.suvam-dev.me";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
