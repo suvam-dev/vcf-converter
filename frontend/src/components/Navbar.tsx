@@ -39,34 +39,36 @@ export default function Navbar() {
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-8 font-medium text-sm text-muted-foreground">
-            <Link href="#how-it-works" className="hover:text-foreground transition-colors">
+            <Link href="/#how-it-works" className="hover:text-foreground transition-colors">
               How It Works
             </Link>
-            <Link href="#features" className="hover:text-foreground transition-colors">
+            <Link href="/#features" className="hover:text-foreground transition-colors">
               Features
             </Link>
-          <Link href="#faq" className="hover:text-foreground transition-colors">
-            FAQ
-          </Link>
-        </nav>
+            <Link href="/#faq" className="hover:text-foreground transition-colors">
+              FAQ
+            </Link>
+          </nav>
 
-        <div className="hidden md:flex items-center gap-4">
-          <Link href="https://github.com/suvam-dev" target="_blank" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-            GitHub
-          </Link>
-          <AnimatedButton variant="default">
-            Convert Now
-          </AnimatedButton>
-        </div>
+          <div className="hidden md:flex items-center gap-4">
+            <Link href="https://github.com/suvam-dev" target="_blank" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+              GitHub
+            </Link>
+            <Link href="/#converter">
+              <AnimatedButton variant="default">
+                Convert Now
+              </AnimatedButton>
+            </Link>
+          </div>
 
-        {/* Mobile Toggle */}
-        <button
-          className="md:hidden p-2 text-foreground"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label="Toggle Menu"
-        >
-          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+          {/* Mobile Toggle */}
+          <button
+            className="md:hidden p-2 text-foreground"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle Menu"
+          >
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
 
         {/* Mobile Menu */}
@@ -78,23 +80,41 @@ export default function Navbar() {
               exit={{ opacity: 0, y: -10 }}
               className="md:hidden absolute top-[calc(100%+16px)] left-0 w-full bg-background/95 backdrop-blur-xl border border-border shadow-xl rounded-[24px] py-6 px-6 flex flex-col gap-4"
             >
-              <Link href="#how-it-works" className="text-sm font-medium p-2 hover:bg-muted rounded-md" onClick={() => setMobileMenuOpen(false)}>
+              <Link
+                href="/#how-it-works"
+                className="text-base font-medium hover:text-primary transition-colors py-2"
+                onClick={() => setMobileMenuOpen(false)}
+              >
                 How It Works
               </Link>
-              <Link href="#features" className="text-sm font-medium p-2 hover:bg-muted rounded-md" onClick={() => setMobileMenuOpen(false)}>
+              <Link
+                href="/#features"
+                className="text-base font-medium hover:text-primary transition-colors py-2"
+                onClick={() => setMobileMenuOpen(false)}
+              >
                 Features
               </Link>
-              <Link href="#faq" className="text-sm font-medium p-2 hover:bg-muted rounded-md" onClick={() => setMobileMenuOpen(false)}>
+              <Link
+                href="/#faq"
+                className="text-base font-medium hover:text-primary transition-colors py-2"
+                onClick={() => setMobileMenuOpen(false)}
+              >
                 FAQ
               </Link>
-              <div className="pt-4 border-t border-border flex flex-col gap-3">
-                <Link href="https://github.com/suvam-dev" className="text-sm font-medium p-2 text-center border border-border rounded-md" onClick={() => setMobileMenuOpen(false)}>
-                  GitHub
-                </Link>
-                <AnimatedButton variant="default" className="w-full">
+              <div className="h-px w-full bg-border/50 my-2" />
+              <Link
+                href="https://github.com/suvam-dev"
+                target="_blank"
+                className="text-base font-medium hover:text-primary transition-colors py-2"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                GitHub
+              </Link>
+              <Link href="/#converter" onClick={() => setMobileMenuOpen(false)}>
+                <AnimatedButton variant="default" className="w-full mt-2">
                   Convert Now
                 </AnimatedButton>
-              </div>
+              </Link>
             </motion.div>
           )}
         </AnimatePresence>
