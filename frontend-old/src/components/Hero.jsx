@@ -1,9 +1,8 @@
-"use client";
 import { useState, useRef } from 'react';
 import { Upload, CheckCircle2, X, Pencil, ChevronDown } from 'lucide-react';
 import toast from 'react-hot-toast';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? (process.env.NODE_ENV !== 'production' ? "http://localhost:8000" : "/api");
+const API_URL = import.meta.env.VITE_API_URL ?? (import.meta.env.DEV ? "http://localhost:8000" : "/api");
 
 const downloadVcf = (blob, fileName) => {
   const url = window.URL.createObjectURL(blob);
@@ -16,10 +15,7 @@ const downloadVcf = (blob, fileName) => {
   window.URL.revokeObjectURL(url);
 };
 
-export default function Hero({ 
-  title = <>Free Online <span className="text-blue-500 italic">VCF Converter</span></>, 
-  subtitle = "Transform Your Contacts Effortlessly" 
-}) {
+export default function Hero() {
   const [file, setFile] = useState(null);
   const [uploadStatus, setUploadStatus] = useState({ loading: false, message: '', columns: [], error: false });
   const fileInputRef = useRef(null);
@@ -111,8 +107,8 @@ export default function Hero({
       </div>
       <div className="flex flex-col justify-center items-center">
         <div className="flex flex-col gap-2 text-center">
-          <h1 className="text-7xl max-md:text-4xl max-sm:text-3xl font-extrabold">{title}</h1>
-          <h2 className="text-3xl max-md:text-2xl max-sm:text-xl font-bold flex justify-center text-gray-600 mt-2">{subtitle}</h2>
+          <h1 className="text-7xl max-md:text-4xl max-sm:text-3xl font-extrabold">Free Online <span className="text-blue-500 italic">VCF Converter</span></h1>
+          <h2 className="text-3xl max-md:text-2xl max-sm:text-xl font-bold flex justify-center text-gray-600 mt-2">Transform Your Contacts Effortlessly</h2>
         </div>
         <div className="flex flex-col gap-2 w-full mt-10 max-md:mt-2 justify-center items-center text-gray-500 max-md:text-[14px] max-sm:text-[12px]">
           <div className="text-center">Upload CSV or Excel files, map columns, apply transformations, and export a clean vCard (.vcf) file. The fastest and most secure way to convert to VCF online.</div>
