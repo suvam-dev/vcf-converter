@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Menu, X, FileUp } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { AnimatedButton } from "@/components/ui/animated-button";
@@ -10,6 +11,7 @@ import Image from "next/image";
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -54,11 +56,9 @@ export default function Navbar() {
             <Link href="https://github.com/suvam-dev" target="_blank" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
               GitHub
             </Link>
-            <Link href="/#converter">
-              <AnimatedButton variant="default">
-                Convert Now
-              </AnimatedButton>
-            </Link>
+            <AnimatedButton variant="default" onClick={() => router.push("/#converter")}>
+              Convert Now
+            </AnimatedButton>
           </div>
 
           {/* Mobile Toggle */}
@@ -110,11 +110,9 @@ export default function Navbar() {
               >
                 GitHub
               </Link>
-              <Link href="/#converter" onClick={() => setMobileMenuOpen(false)}>
-                <AnimatedButton variant="default" className="w-full mt-2">
-                  Convert Now
-                </AnimatedButton>
-              </Link>
+              <AnimatedButton variant="default" className="w-full mt-2" onClick={() => { setMobileMenuOpen(false); router.push("/#converter"); }}>
+                Convert Now
+              </AnimatedButton>
             </motion.div>
           )}
         </AnimatePresence>
