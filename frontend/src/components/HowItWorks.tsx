@@ -23,7 +23,7 @@ export default function HowItWorks() {
   ];
 
   return (
-    <section className="section-padding bg-muted/20 border-y border-border/50 overflow-hidden">
+    <section id="how-it-works" className="section-padding bg-muted/20 border-y border-border/50 overflow-hidden">
       <div className="max-w-[1200px] mx-auto px-4 md:px-6">
         <div className="text-center mb-16 space-y-4">
           <h2 className="text-[32px] md:text-[44px] font-bold tracking-tight">Three steps to done</h2>

@@ -5,7 +5,7 @@ import { Zap, Shield, FileJson, LayoutGrid, Download } from "lucide-react";
 
 export default function WhyChooseUs() {
   return (
-    <section className="section-padding bg-background">
+    <section id="features" className="section-padding bg-background">
       <div className="max-w-[1200px] mx-auto px-4 md:px-6">
         <div className="text-center mb-16 space-y-4">
           <h2 className="text-[32px] md:text-[44px] font-bold tracking-tight">Built for speed and privacy</h2>
