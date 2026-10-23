@@ -43,9 +43,9 @@ export default function Footer() {
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-8 text-sm font-medium text-muted-foreground">
-            <Link href="#privacy" className="hover:text-foreground transition-colors">Privacy</Link>
-            <Link href="#terms" className="hover:text-foreground transition-colors">Terms</Link>
-            <Link href="mailto:support@vcfconverter.com" className="hover:text-foreground transition-colors">Contact</Link>
+            <Link href="/privacy" className="hover:text-foreground transition-colors">Privacy</Link>
+            <Link href="/terms" className="hover:text-foreground transition-colors">Terms</Link>
+            <Link href="mailto:suvam.iitkgp@gmail.com" className="hover:text-foreground transition-colors">Contact</Link>
             <Link href="https://github.com/suvam-dev" target="_blank" className="hover:text-foreground transition-colors flex items-center gap-1.5">
               GitHub
             </Link>
