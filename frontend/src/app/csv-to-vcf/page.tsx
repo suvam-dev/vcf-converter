@@ -9,7 +9,17 @@ import FAQ from "@/components/FAQ";
 export const metadata = {
   title: "CSV to VCF Converter - Free Online vCard Generator",
   description: "Convert your CSV contacts to VCF (vCard) format instantly. Perfect for importing spreadsheet contacts into iPhone, Android, or Outlook. No sign up required.",
-  keywords: "csv to vcf, convert csv to vcf, csv to vcard, online csv to vcf converter",
+  keywords: [
+    "csv to vcf",
+    "convert csv to vcf",
+    "csv to vcard",
+    "online csv to vcf converter",
+    "csv to vcf converter free",
+    "import csv contacts to iphone",
+    "import csv contacts to android",
+    "google contacts csv to vcf",
+    "csv address book to vcard",
+  ],
   alternates: {
     canonical: "/csv-to-vcf",
   },

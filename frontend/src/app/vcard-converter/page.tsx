@@ -9,7 +9,17 @@ import FAQ from "@/components/FAQ";
 export const metadata = {
   title: "Free vCard Converter - Create VCF Files Online",
   description: "Create standard vCard (.vcf) files from your spreadsheets. The ultimate vCard converter tool for all your contact export needs.",
-  keywords: "vcard converter, convert to vcard, online vcard maker, generate vcf file",
+  keywords: [
+    "vcard converter",
+    "convert to vcard",
+    "online vcard maker",
+    "generate vcf file",
+    "create vcard online",
+    "vcf to vcard",
+    "contact file converter",
+    "free vcard creator",
+    "vcard 3.0 generator",
+  ],
   alternates: {
     canonical: "/vcard-converter",
   },

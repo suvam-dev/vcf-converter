@@ -26,7 +26,7 @@ export default function WhyChooseUs() {
               </div>
               <h3 className="text-[24px] font-bold">100% Privacy Guaranteed</h3>
               <p className="text-[18px] text-muted-foreground leading-relaxed">
-                Your files never leave your device. All processing happens locally in your browser, ensuring enterprise-grade data security. We don't have servers, so we can't steal your data even if we wanted to.
+                Your files never leave your device. All processing happens locally in your browser, ensuring enterprise-grade data security. We don&apos;t have servers, so we can&apos;t steal your data even if we wanted to.
               </p>
             </div>
             {/* Decorative background element */}
@@ -48,7 +48,7 @@ export default function WhyChooseUs() {
             </div>
             <h3 className="text-[20px] font-bold mb-2">Smart Auto-Mapping</h3>
             <p className="text-[16px] text-muted-foreground">
-              Automatically detects column names like 'Phone' or 'Email'.
+              Automatically detects column names like &apos;Phone&apos; or &apos;Email&apos;.
             </p>
           </motion.div>
 
